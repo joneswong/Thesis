@@ -9,17 +9,22 @@ import tensorflow as tf
 
 from utility.word_embeddings import EmbeddingModel
 from utility.nyt_dataset import NYTDataset
+from utility.fb_dataset import FBDataset
 import cnn.train_cnn as train_cnn
 import cnn.test_cnn as test_cnn
+from kbe.run_kbe import run_kbe
 
 FLAGS = None
 
 def main():
-    we = EmbeddingModel("./thu_baselines/NRE/data/vec.bin", "./thu_baselines/NRE/data/vector2.txt")
+    '''we = EmbeddingModel("./thu_baselines/NRE/data/vec.bin", "./thu_baselines/NRE/data/vector2.txt")
     dataset = NYTDataset("./thu_baselines/NRE/data/RE", we.word2id)
 
     train_cnn.train(dataset, we, FLAGS)
-    test_cnn.test(dataset, we, FLAGS)
+    test_cnn.test(dataset, we, FLAGS)'''
+
+    dataset = FBDataset(train_path="./FB15k/freebase_mtr100_mte100-train.txt", valid_path="./FB15k/freebase_mtr100_mte100-valid.txt", test_path="./FB15k/freebase_mtr100_mte100-test.txt")
+    run_kbe(dataset, FLAGS)
 
     print("Completed.")
 
@@ -50,9 +55,15 @@ if __name__=="__main__":
         help="Dimension of position embeddings"
     )
     parser.add_argument(
+        "--entity_embedding_dim",
+        type=int,
+        default=50,
+        help="Dimension of entity embeddings"
+    )
+    parser.add_argument(
         "--batch_size",
         type=int,
-        default=160,
+        default=256,#160,
         help="Number of examples in each batch"
     )
     parser.add_argument(
@@ -76,7 +87,7 @@ if __name__=="__main__":
     parser.add_argument(
         "--learning_rate",
         type=float,
-        default=0.2,
+        default=0.01,#0.2,
         help="Initial learning rate"
     )
     parser.add_argument(
@@ -88,13 +99,13 @@ if __name__=="__main__":
     parser.add_argument(
         "--log_dir",
         type=str,
-        default="./log",
+        default="./kbe_out",#"./log",
         help="Directory to put the log data"
     )
     parser.add_argument(
         "--max_epochs",
         type=int,
-        default=50,
+        default=1000,#50,
         help="Number of epochs to traverse training examples"
     )
     parser.add_argument(
@@ -102,6 +113,18 @@ if __name__=="__main__":
         type=int,
         default=64,
         help="Number of batches each summarization takes"
+    )
+    parser.add_argument(
+        "--margin",
+        type=float,
+        default=1.0,
+        help="The margin to seperate positive triples from negative ones"
+    )
+    parser.add_argument(
+        "--norm_flag",
+        type=int,
+        default=1,
+        help="Which norm to use"
     )
     FLAGS, unparsed = parser.parse_known_args()
     main()
