@@ -93,6 +93,7 @@ def run_kbe(dataset, config):
                 if cur_batch_size == bs:
                     cur_batch_size = 0
                     feed_dict = {entid_place_holder:eids, relid_place_holder:rids, batch_size:bs}
+                    sess.run(normalize_eemb_op)
                     _, loss_value = sess.run([train_op, loss], feed_dict=feed_dict)
                     batch_count += 1
 
@@ -104,7 +105,7 @@ def run_kbe(dataset, config):
             duration = time.time() - start_time
             print("%d epoch finished (%.2f sec)"%(epoch, duration))
 
-            if epoch % 5 == 0:
+            if epoch % 10 == 0:
                 print("Training data eval:")
                 num_of_correct_tails = 0
                 num_of_correct_heads = 0

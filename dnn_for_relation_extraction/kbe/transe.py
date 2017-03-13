@@ -29,7 +29,7 @@ def get_embeddings(entity_ids, relation_ids):
         entity_embeddings = tf.get_variable(name="entity_embeddings")
         structural_relation_embeddings = tf.get_variable(name="structural_relation_embeddings")
 
-        eemb = tf.nn.embedding_lookup(params=entity_embeddings, ids=entity_ids, max_norm=1.0)
+        eemb = tf.nn.embedding_lookup(params=entity_embeddings, ids=entity_ids)
         remb = tf.nn.embedding_lookup(params=structural_relation_embeddings, ids=relation_ids)
 
     return eemb, remb

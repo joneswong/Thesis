@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" serverName="GCR10.126.204.111">
+    <serverData>
+      <paths name="GCR10.126.204.111">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/dnn_for_relation_extraction" local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="GCR10.126.204.225">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/dnn_for_relation_extraction" local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+    </serverData>
+  </component>
+</project>

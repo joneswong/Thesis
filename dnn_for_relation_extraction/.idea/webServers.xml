@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="50e0cc75-7de1-46dc-8ead-aa2d5d323732" name="GCR10.126.204.225" url="http://10.126.204.225">
+        <fileTransfer host="10.126.204.225" port="22" rootFolder="/home/v-zw" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+      <webServer id="661d042c-4fc8-4896-ba76-7e799c8c540d" name="GCR10.126.204.111" url="http://10.126.204.111">
+        <fileTransfer host="10.126.204.111" port="22" rootFolder="/home/v-zw" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
